@@ -13,11 +13,18 @@ Customer::~Customer()
 void Customer::Reserve()
 {
 	bool hasOtherGroup = false;
+	char cBookXtra;
 	system("cls");
 	std::cout << "Enter your name :"; std::cin >> this->name;
 	std::cout << "Enter your age :"; std::cin >> this->age;
-	std::cout << "Do you have any child/elders?";
-	Sleep(1000);
+	std::cout << "Would you like to book for extra people? (y/n) :"; std::cin >> cBookXtra;
+	switch (cBookXtra)
+	{
+	case 'Y':
+	default:
+	}
+
+	
 }
 
 void Customer::EditReservation()

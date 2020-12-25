@@ -13,5 +13,21 @@ private:
 	std::string nationality;
 	int dateofbooking[3]; // 0 - date,1 - month, 2 - year
 
+	struct Elder 
+	{
+		std::string name;
+		int age;
+		std::string nationality;
+	}elder;
+
+	struct Child 
+	{
+		std::string name;
+		int age;
+		std::string nationality;
+	}child;
 
 };
+
+
+
