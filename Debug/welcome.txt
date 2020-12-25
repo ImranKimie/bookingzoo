@@ -1,0 +1,11 @@
+==================================================================================
+		Welcome To [          ] Zoo Booking System
+
+		Opening Time : 10 AM - 10 PM
+		Opening Days : Everyday
+==================================================================================
+      PACKAGE	|		DESCRIPTION		|	Price
+	1	|	Package 1 description		|	RM 100
+	2	|	Package 2 description		|	RM 200
+	3	|	Package 3 description		|	RM 300
+
