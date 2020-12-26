@@ -10,9 +10,11 @@ public:
 private:
 	std::string name;
 	int age;
-	int numOfPeople[3];//0 - adult ,1 - kids,2 - elders
+	std::vector <Customer*> extraguests;
+	std::string currentCustGroup;
+	int ageGroup[3] = {};//0 - child , 1 - adults , 2 - elders
 	std::string nationality;
-	int dateofbooking[3]; // 0 - date,1 - month, 2 - year
+	int dateofbooking[3]; // 0 - day,1 - month, 2 - year
 	bool isElder, isChild;
 };
 

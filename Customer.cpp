@@ -12,19 +12,22 @@ Customer::~Customer()
 
 void Customer::Reserve()
 {
-	bool hasOtherGroup = false;
-	char cBookXtra;
+	char hasAddGuests; // Has additional guests?
 	system("cls");
 	std::cout << "Enter your name :"; std::cin >> this->name;
 	std::cout << "Enter your age :"; std::cin >> this->age;
-	std::cout << "Is there any additional guests ? (y/n) :"; std::cin >> cBookXtra;
-	switch (cBookXtra)
+	
+	if (age >= 18)
+		this->currentCustGroup = "Adult";
+
+	std::cout << "Is there any additional guests ? (y/n) :"; std::cin >> hasAddGuests;
+	switch (hasAddGuests)
 	{
 	case 'Y':ExtraGuests(); break;
 	case 'y':ExtraGuests(); break;
 	case 'N':break;
 	case 'n':break;
-	default:Reserve(); break;
+	default: Reserve(); break;
 	}
 
 	
@@ -37,18 +40,21 @@ void Customer::EditReservation()
 
 void Customer::ExtraGuests()
 {
-	std::vector <Customer*> customerarr;
-	int tempint = 0;
-	std::cout << "Enter the amount of extra guests"; std::cin >> tempint;
-	for (int i = 0; i < tempint; i++)
+	
+	int numberofguests;
+	std::cout << "Enter the amount of extra guests : "; std::cin >> numberofguests;
+	for (int i = 0; i < numberofguests; i++)
 	{
 		Customer* custarr = new Customer;
-		customerarr.push_back(custarr);
+		std::cout << "Enter the name for guest " << i+1 << " : "; std::cin >> custarr->name;
+		std::cout << "Enter the age for guest " << i + 1 << " : "; std::cin >> custarr->age;
+
+		this->extraguests.push_back(custarr);
 	}
-	std::cout << "custarr :\n";
-	for (auto i = customerarr.begin(); i != customerarr.end(); ++i)
-		std::cout << *i << " \n";
-	std::cout << std::endl;
-	system("pause");
+	//std::cout << "custarr :\n";
+	
+	
+		
+	
 	
 }
