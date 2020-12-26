@@ -4,7 +4,6 @@
 int main()
 {
 	Welcome();
-	system("cls");
 	OptionScreen();
 
 
