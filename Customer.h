@@ -5,7 +5,6 @@ public:
 	Customer();
 	~Customer();
 	void Reserve();
-	void EditReservation();
 	void DisplayReservation();
 	void ExtraGuests();
 private:

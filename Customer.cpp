@@ -42,11 +42,6 @@ void Customer::Reserve()
 	
 }
 
-void Customer::EditReservation()
-{
-
-}
-
 void Customer::DisplayReservation()
 {
 	system("cls");
@@ -56,6 +51,17 @@ void Customer::DisplayReservation()
 	std::cout << "Your nationality : " << this->nationality << std::endl;
 	std::cout << "Your booking date : \n";
 	std::cout << "Day : " << this->dateofbooking[0] << "\n"<< "Month : " << this->dateofbooking[1] << "\n" << "Year : " << this->dateofbooking[2] << std::endl;
+	if (!this->extraguests.empty())
+	{
+		std::cout << "\nExtra guests :\n\n";
+		for (size_t i = 0; i < extraguests.size(); ++i)
+		{
+			std::cout << std::endl;
+			std::cout << "Name of guest " << i+1 << " : " << this->extraguests.at(i)->name << std::endl;
+			std::cout << "Guest " << i + 1 << " 's Age : " << this->extraguests.at(i)->age << std::endl;
+			std::cout << std::endl;
+		}
+	}
 	system("pause");
 }
 

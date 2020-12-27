@@ -48,14 +48,13 @@ void OptionScreen()
 				std::cout << line << '\n';
 		}
 		
-		std::cout << "\nChoose your option (1,2,3,4) : "; std::cin >> option;
+		std::cout << "\nChoose your option (1,2,3) : "; std::cin >> option;
 
 		switch (option)
 		{
 			case 1:	customer.Reserve(); break;
-			case 2:	customer.EditReservation(); break;
-			case 3:	customer.DisplayReservation(); break;
-			case 4:	exit(-1); break;
+			case 2:	customer.DisplayReservation(); break;
+			case 3:	exit(-1); break;
 			default: 
 				system("cls");
 				OptionScreen(); 
