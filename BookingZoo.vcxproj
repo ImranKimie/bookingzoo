@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CreateAccount.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="GlobalFunctions.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CreateAccount.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="GlobalFunctions.h" />
     <ClInclude Include="includes.h" />

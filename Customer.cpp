@@ -54,7 +54,9 @@ void Customer::Reserve()
 
 void Customer::ReserveExtra()
 {
+	static int count = 1;
 	system("cls");
+	std::cout << "Enter info for guest " << count << " : \n";
 	std::cout << "Enter your name : "; std::cin >> this->name;
 	std::cout << "Enter your age : "; std::cin >> this->age;
 	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
@@ -73,7 +75,7 @@ void Customer::ReserveExtra()
 		case 2:this->nationality = "Local Citizen"; break;
 		default:this->nationality = "Local Citizen"; break;
 	}
-
+	count++;
 }
 
 void Customer::DisplayReservation()
