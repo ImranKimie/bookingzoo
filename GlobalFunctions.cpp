@@ -34,6 +34,7 @@ void OptionScreen()
 	int option;
 	while (1)
 	{
+	loop:
 		OptionFile.open(OPTIONS_FILEPATH);
 		system("cls");
 		if (OptionFile.fail())
@@ -54,10 +55,11 @@ void OptionScreen()
 		{
 			case 1:	customer.Reserve(); break;
 			case 2:	customer.DisplayReservation(); break;
-			case 3:	exit(-1); break;
+			case 3:	customer.CalculatePricing(); break;
+			case 4:	exit(0); break;
 			default: 
 				system("cls");
-				OptionScreen(); 
+				goto loop;
 				break;
 		}
 		OptionFile.close();

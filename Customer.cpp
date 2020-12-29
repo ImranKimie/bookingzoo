@@ -2,7 +2,7 @@
 #include "includes.h"
 Customer::Customer()
 {
-
+	this->pricing = 0.0f;
 }
 
 Customer::~Customer()
@@ -16,30 +16,64 @@ void Customer::Reserve()
 	char hasAddGuests; // Has additional guests?
 	std::cout << "Enter your name : "; std::cin >> this->name;
 	std::cout << "Enter your age : "; std::cin >> this->age;
-	std::cout << "Are you a foreigner or a local citizen ? : "; std::cin >> this->nationality;
+	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
 	std::cout << "Enter the month : "; std::cin >> this->dateofbooking[1];
 	std::cout << "Enter the year : "; std::cin >> this->dateofbooking[2];
 	
-	if (age >= 18 && age < 60)
+	if (this->age >= 18 && this->age < 60)
 		this->currentCustGroup = "Adult";
-	else if(age >= 60)
+	else if(this->age >= 60)
 		this->currentCustGroup = "Senior Citizen";
 	else
 		this->currentCustGroup = "Child";
 
-	std::cout << "Is there any additional guests ? (y/n) : "; std::cin >> hasAddGuests;
-	switch (hasAddGuests)
+	switch (this->inationality)
 	{
-	case 'Y':ExtraGuests(); break;
-	case 'y':ExtraGuests(); break;
-	case 'N':break;
-	case 'n':break;
-	default: Reserve(); break;
+		case 1:this->nationality = "Foreigner"; break;
+		case 2:this->nationality = "Local Citizen"; break;
+		default:this->nationality = "Local Citizen"; break;
 	}
 
 	
+
+
+	std::cout << "Is there any additional guests ? (y/n) : "; std::cin >> hasAddGuests;
+	switch (hasAddGuests)
+	{
+		case 'Y':ExtraGuests(); break;
+		case 'y':ExtraGuests(); break;
+		case 'N':break;
+		case 'n':break;
+		default: Reserve(); break;
+	}
+
+	
+}
+
+void Customer::ReserveExtra()
+{
+	system("cls");
+	std::cout << "Enter your name : "; std::cin >> this->name;
+	std::cout << "Enter your age : "; std::cin >> this->age;
+	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
+
+
+	if (this->age >= 18 && this->age < 60)
+		this->currentCustGroup = "Adult";
+	else if (this->age >= 60)
+		this->currentCustGroup = "Senior Citizen";
+	else
+		this->currentCustGroup = "Child";
+
+	switch (this->inationality)
+	{
+		case 1:this->nationality = "Foreigner"; break;
+		case 2:this->nationality = "Local Citizen"; break;
+		default:this->nationality = "Local Citizen"; break;
+	}
+
 }
 
 void Customer::DisplayReservation()
@@ -54,10 +88,10 @@ void Customer::DisplayReservation()
 	if (!this->extraguests.empty())
 	{
 		std::cout << "\nExtra guests :\n\n";
-		for (size_t i = 0; i < extraguests.size(); ++i)
+		for (size_t i = 0; i < this->extraguests.size(); ++i)
 		{
 			std::cout << std::endl;
-			std::cout << "Name of guest " << i+1 << " : " << this->extraguests.at(i)->name << std::endl;
+			std::cout << "Name of guest " << i + 1 << " : " << this->extraguests.at(i)->name << std::endl;
 			std::cout << "Guest " << i + 1 << " 's Age : " << this->extraguests.at(i)->age << std::endl;
 			std::cout << std::endl;
 		}
@@ -72,10 +106,40 @@ void Customer::ExtraGuests()
 	for (int i = 0; i < numberofguests; i++)
 	{
 		Customer* custarr = new Customer;
-		std::cout << "Enter the name for guest " << i + 1 << " : "; std::cin >> custarr->name;
-		std::cout << "Enter the age for guest " << i + 1 << " : "; std::cin >> custarr->age;
-
+		custarr->ReserveExtra();
 		this->extraguests.push_back(custarr);
 	}
 
+}
+
+void Customer::CalculatePricing()
+{
+	if ((this->currentCustGroup == "Adult") && (this->nationality == "Local Citizen"))
+		this->pricing += 38.0f;
+	else if (((this->currentCustGroup == "Senior Citizen") || (this->currentCustGroup == "Child")) && (this->nationality == "Local Citizen"))
+		this->pricing += 31.0f;
+	else if ((this->currentCustGroup == "Senior Citizen") && (this->nationality == "Foreigner"))
+		this->pricing += 50.0f;
+	else if ((this->currentCustGroup == "Adult") && (this->nationality == "Foreigner"))
+		this->pricing += 81.0f;
+	else if ((this->currentCustGroup == "Child") && (this->nationality == "Foreigner"))
+		this->pricing += 59.0f;
+
+	for (size_t i = 0; i < this->extraguests.size(); ++i)
+	{
+		if ((this->extraguests.at(i)->currentCustGroup == "Adult") && (this->extraguests.at(i)->nationality == "Local Citizen"))
+			this->pricing += 38.0f;
+		else if (((this->extraguests.at(i)->currentCustGroup == "Senior Citizen") || (this->extraguests.at(i)->currentCustGroup == "Child")) && (this->extraguests.at(i)->nationality == "Local Citizen"))
+			this->pricing += 31.0f;
+		else if ((this->extraguests.at(i)->currentCustGroup == "Senior Citizen") && (this->extraguests.at(i)->nationality == "Foreigner"))
+			this->pricing += 50.0f;
+		else if ((this->extraguests.at(i)->currentCustGroup == "Adult") && (this->extraguests.at(i)->nationality == "Foreigner"))
+			this->pricing += 81.0f;
+		else if ((this->extraguests.at(i)->currentCustGroup == "Child") && (this->extraguests.at(i)->nationality == "Foreigner"))
+			this->pricing += 59.0f;
+		
+	}
+	system("cls");
+	std::cout << "Total Price : RM " << this->pricing << std::endl;
+	system("pause");
 }

@@ -1,11 +1,20 @@
 ==================================================================================
-		Welcome To [          ] Zoo Booking System
+		Welcome to [		] Zoo Booking System!
 
 		Opening Time : 10 AM - 10 PM
 		Opening Days : Everyday
 ==================================================================================
-      PACKAGE	|		DESCRIPTION		|	Price
-	1	|	Package 1 description		|	RM 100
-	2	|	Package 2 description		|	RM 200
-	3	|	Package 3 description		|	RM 300
+
+Ticket Pricing
+===============
++-----------------------+----------+
+| Age Group/Nationality | Pricing  |
++-----------------------+----------+
+| Adult                 | RM 38.00 |
+| Senior Citizen        | RM 31.00 |
+| Children              | RM 31.00 |
+| Foreigner Senior      | RM 50.00 |
+| Foreigner Adult       | RM 81.00 |
+| Foreigner Children    | RM 59.00 |
++-----------------------+----------+
 
