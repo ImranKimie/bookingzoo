@@ -1,12 +1,2 @@
-﻿  CreateAccount.cpp
-E:\GitHub Repos\bookingzoo\CreateAccount.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
-E:\GitHub Repos\bookingzoo\CreateAccount.cpp(62,20): warning C4018: '<': signed/unsigned mismatch
-E:\GitHub Repos\bookingzoo\CreateAccount.cpp(97,20): warning C4018: '<': signed/unsigned mismatch
-E:\GitHub Repos\bookingzoo\CreateAccount.cpp(121,20): warning C4018: '<': signed/unsigned mismatch
-E:\GitHub Repos\bookingzoo\CreateAccount.cpp(126,20): warning C4018: '<': signed/unsigned mismatch
-E:\GitHub Repos\bookingzoo\CreateAccount.cpp(132,20): warning C4018: '<': signed/unsigned mismatch
-  Customer.cpp
-  GlobalFunctions.cpp
-  Source.cpp
-  Generating Code...
+﻿  Source.cpp
   BookingZoo.vcxproj -> E:\GitHub Repos\bookingzoo\Debug\BookingZoo.exe

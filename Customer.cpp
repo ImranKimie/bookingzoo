@@ -3,6 +3,7 @@
 Customer::Customer()
 {
 	this->pricing = 0.0f;
+	this->name = "";
 }
 
 Customer::~Customer()
@@ -14,7 +15,8 @@ void Customer::Reserve()
 {
 	system("cls");
 	char hasAddGuests; // Has additional guests?
-	std::cout << "Enter your name : "; std::cin >> this->name;
+	std::cin.ignore();
+	std::cout << "Enter your name : "; std::getline(std::cin, this->name);
 	std::cout << "Enter your age : "; std::cin >> this->age;
 	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
 	std::cout << "Enter the date you want to book (in numbers) : \n";
@@ -57,7 +59,8 @@ void Customer::ReserveExtra()
 	static int count = 1;
 	system("cls");
 	std::cout << "Enter info for guest " << count << " : \n";
-	std::cout << "Enter your name : "; std::cin >> this->name;
+	std::cin.ignore();
+	std::cout << "Enter your name : "; std::getline(std::cin, this->name);
 	std::cout << "Enter your age : "; std::cin >> this->age;
 	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
 

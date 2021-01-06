@@ -5,7 +5,8 @@
 #include <Windows.h>
 #include <string>
 #include <vector> 
-#include <conio.h> 
+#include <conio.h>
+#include <sstream>
 
 #define WELCOME_FILEPATH "welcome.txt"
 #define OPTIONS_FILEPATH "optionmessage.txt"
