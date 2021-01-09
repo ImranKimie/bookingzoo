@@ -5,16 +5,16 @@
 		Opening Days : Everyday
 ==================================================================================
 
-Ticket Pricing
-===============
-+-----------------------+----------+
-| Age Group/Nationality | Pricing  |
-+-----------------------+----------+
-| Adult                 | RM 38.00 |
-| Senior Citizen        | RM 31.00 |
-| Children              | RM 31.00 |
-| Foreigner Senior      | RM 50.00 |
-| Foreigner Adult       | RM 81.00 |
-| Foreigner Children    | RM 59.00 |
-+-----------------------+----------+
+		  Ticket Pricing
+	         ==================
+	+-------------------------------+------------------+
+	| Age Group/Nationality         |      Pricing     |
+	+-------------------------------+------------------+
+	| Adult (18-60)                 |     RM 38.00     |
+	| Senior Citizen (60+)          |     RM 31.00     |
+	| Children (1-17)               |     RM 31.00     |
+	| Foreigner Senior (18-60)      |     RM 50.00     |
+	| Foreigner Adult (60+)         |     RM 81.00     |
+	| Foreigner Children (1-17)     |     RM 59.00     |
+	+-------------------------------+------------------+
 
