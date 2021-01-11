@@ -9,7 +9,7 @@ CreateAccount::~CreateAccount() //des
 {
 	std::cout << "\n\nWelcome to DSA ZOO SYSTEM! \n";
 }
-
+void selectionSort(int[], int);
 void CreateAccount::getInformation(char firstname[10], char lastname[10], char fullname[20])
 {
 
@@ -75,9 +75,12 @@ int CreateAccount::Account(char fullname[20], char username[10])
 	for (int j = 0; j < many; ++j)
 	{
 		randompassword[j] = rand() % 9999 + 1000;   //random number 1000-9999
+	}
+	selectionSort(randompassword, 3);
+	for (int j = 0; j < many; ++j)
+	{
 		std::cout << "(" << choose[j] << ") " << randompassword[j];
-		std::cout << std::endl;
-
+		std::cout<<std::endl;
 	}
 	char answer;
 	std::cout << " your choose? = ";
@@ -214,3 +217,22 @@ void CreateAccount::LogIn(int length, int password, char username[10], std::ofst
 
 
 }
+void selectionSort(int array[], int size)
+{
+	int temp; // temporary variable used for swapping
+	int i;
+	int j;
+	// sort array until only one element is left
+	for (i = 0; i < size; i++) // You used the const SIZE, which is unknown to the routine, plus 
+							// you were sorting with size - 2 ( < size-1)
+	{
+		j = i;
+		while (j > 0 && (array[j - 1] > array[j]))
+		{
+			temp = array[j];
+			array[j] = array[j - 1];
+			array[j - 1] = temp;
+			j--;
+		}
+	}
+} // end method selectionSort 
