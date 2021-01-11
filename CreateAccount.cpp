@@ -46,6 +46,7 @@ int CreateAccount::Account(char fullname[20], char username[10])
 {
 	//create username
 	int random;
+	srand(time(0));
 	random = rand() % 9 + 0;
 	char crandom = '0' + random;
 
