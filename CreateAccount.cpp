@@ -71,6 +71,7 @@ int CreateAccount::Account(char fullname[20], char username[10])
 	int randompassword[3];
 	std::cout << "\n\n\nWe will give you random a password";
 	std::cout << "\nplease choose 1 and make sure it is in LOWER CASE \n";
+	srand(time(0));
 	char choose[many] = { 'a', 'b', 'c' };
 	for (int j = 0; j < many; ++j)
 	{
