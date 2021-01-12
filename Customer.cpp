@@ -2,8 +2,7 @@
 #include "includes.h"
 Customer::Customer()
 {
-	this->pricing = 0.0f;
-	this->name = "";
+
 }
 
 Customer::~Customer()
@@ -13,11 +12,14 @@ Customer::~Customer()
 
 void Customer::Reserve()
 {
-	system("cls");
+	
 	std::ifstream PricingFile;
 	std::string line;
-	char hasAddGuests; // Has additional guests?
+	int numOfTickets;
 	int ticketType;
+	char moretickettype;
+	start:
+	system("cls");
 	PricingFile.open(PRICING_FILEPATH);
 	if (PricingFile.fail())
 	{
@@ -30,132 +32,68 @@ void Customer::Reserve()
 		while (std::getline(PricingFile, line))
 			std::cout << line << '\n';
 	}
-
+	PricingFile.close();
 	askagain:
 	std::cout << "Enter the ticket type that you want(1-6) : "; std::cin >> ticketType;
-	switch (ticketType)
+	std::cout << "Enter the number of tickets you want : "; std::cin >> numOfTickets;
+
+	for (int i = 0; i < numOfTickets; i++)
 	{
-	case 1:this->customerType = "Adult"; this->pricing += 38; break;
-	case 2:this->customerType = "Senior Citizen"; this->pricing += 31; break;
-	case 3:this->customerType = "Children"; this->pricing += 29; break;
-	case 4:this->customerType = "Senior Citizen"; this->nationality = "Foreigner"; this->pricing += 50; break;
-	case 5:this->customerType = "Adult"; this->nationality = "Foreigner"; this->pricing += 81; break;
-	case 6:this->customerType = "Children"; this->nationality = "Foreigner"; this->pricing += 59; break;
-	default:goto askagain; break;
+		Customer* ticketcust = new Customer;
+		
+		ticketcust->TicketInput();
+		switch (ticketType)
+		{
+			case 1:ticketcust->customerType = "Adult"; ticketcust->pricing = 38; break;
+			case 2:ticketcust->customerType = "Senior Citizen"; ticketcust->pricing = 31; break;
+			case 3:ticketcust->customerType = "Children"; ticketcust->pricing = 29; break;
+			case 4:ticketcust->customerType = "Senior Citizen"; ticketcust->nationality = "Foreigner"; ticketcust->pricing = 50; break;
+			case 5:ticketcust->customerType = "Adult"; ticketcust->nationality = "Foreigner"; ticketcust->pricing = 81; break;
+			case 6:ticketcust->customerType = "Children"; ticketcust->nationality = "Foreigner"; ticketcust->pricing = 59; break;
+			default:goto askagain; break;
+		}
+		this->guestslist.push_back(ticketcust);
 	}
-	std::cin.ignore();
-	std::cout << "Enter your name : "; std::getline(std::cin, this->name);
+	
+	std::cout << std::endl;
+	std::cout << "Do you want to add another ticket type?(y/n)"; std::cin >> moretickettype;
+	if (moretickettype == 'y')
+		goto start;
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
 	std::cout << "Enter the month : "; std::cin >> this->dateofbooking[1];
 	std::cout << "Enter the year : "; std::cin >> this->dateofbooking[2];
 	
-	/*
-	std::cout << "Is there any additional guests ? (y/n) : "; std::cin >> hasAddGuests;
-	switch (hasAddGuests)
-	{
-		case 'Y':ExtraGuests(); break;
-		case 'y':ExtraGuests(); break;
-		case 'N':break;
-		case 'n':break;
-		default: Reserve(); break;
-	}
-	*/
-	
 }
-/*
-void Customer::ReserveExtra()
+
+void Customer::TicketInput()
 {
 	static int count = 1;
+	
 	system("cls");
-	std::cout << "Enter info for guest " << count << " : \n";
-	std::cin.ignore();
-	std::cout << "Enter your name : "; std::getline(std::cin, this->name);
-	std::cout << "Enter your age : "; std::cin >> this->age;
-	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
-
-
-	if (this->age >= 18 && this->age < 60)
-		this->currentCustGroup = "Adult";
-	else if (this->age >= 60)
-		this->currentCustGroup = "Senior Citizen";
-	else
-		this->currentCustGroup = "Child";
-
-	switch (this->inationality)
-	{
-		case 1:this->nationality = "Foreigner"; break;
-		case 2:this->nationality = "Local Citizen"; break;
-		default:this->nationality = "Local Citizen"; break;
-	}
+	std::cout << "Enter info for ticket " << count << " : \n";
+	std::cout << "Enter name : "; 
+	if (count == 1)
+		std::cin.ignore();
+	std::getline(std::cin, this->name);
 	count++;
 }
-*//*
+
 void Customer::DisplayReceipt()
 {
 	system("cls");
-	std::cout << "Your name : " << this->name << std::endl;
-	std::cout << "Your age : " << this->age << std::endl;
-	std::cout << "Your current age group : " << this->currentCustGroup << std::endl;
-	std::cout << "Your nationality : " << this->nationality << std::endl;
 	std::cout << "Your booking date : \n";
 	std::cout << "Day : " << this->dateofbooking[0] << "\n"<< "Month : " << this->dateofbooking[1] << "\n" << "Year : " << this->dateofbooking[2] << std::endl;
-	if (!this->extraguests.empty())
+	if (!this->guestslist.empty())
 	{
-		std::cout << "\nExtra guests :\n\n";
-		for (size_t i = 0; i < this->extraguests.size(); ++i)
+		std::cout << "\nTicket Infos:\n\n";
+		for (size_t i = 0; i < this->guestslist.size(); ++i)
 		{
 			std::cout << std::endl;
-			std::cout << "Name of guest " << i + 1 << " : " << this->extraguests.at(i)->name << std::endl;
-			std::cout << "Guest " << i + 1 << " 's Age : " << this->extraguests.at(i)->age << std::endl;
+			std::cout << "Name of guest " << i + 1 << " : " << this->guestslist.at(i)->name << std::endl;
+			std::cout << "Ticket Type : " << this->guestslist.at(i)->nationality << " " << this->guestslist.at(i)->customerType << std::endl;
 			std::cout << std::endl;
 		}
 	}
 	system("pause");
-}*/
-/*
-void Customer::ExtraGuests()
-{
-	int numberofguests;
-	std::cout << "Enter the amount of extra guests : "; std::cin >> numberofguests;
-	for (int i = 0; i < numberofguests; i++)
-	{
-		Customer* custarr = new Customer;
-		custarr->ReserveExtra();
-		this->extraguests.push_back(custarr);
-	}
-
-}*/
-/*
-void Customer::CalculatePricing()
-{
-	if ((this->currentCustGroup == "Adult") && (this->nationality == "Local Citizen"))
-		this->pricing += 38.0f;
-	else if (((this->currentCustGroup == "Senior Citizen") || (this->currentCustGroup == "Child")) && (this->nationality == "Local Citizen"))
-		this->pricing += 31.0f;
-	else if ((this->currentCustGroup == "Senior Citizen") && (this->nationality == "Foreigner"))
-		this->pricing += 50.0f;
-	else if ((this->currentCustGroup == "Adult") && (this->nationality == "Foreigner"))
-		this->pricing += 81.0f;
-	else if ((this->currentCustGroup == "Child") && (this->nationality == "Foreigner"))
-		this->pricing += 59.0f;
-
-	for (size_t i = 0; i < this->extraguests.size(); ++i)
-	{
-		if ((this->extraguests.at(i)->currentCustGroup == "Adult") && (this->extraguests.at(i)->nationality == "Local Citizen"))
-			this->pricing += 38.0f;
-		else if (((this->extraguests.at(i)->currentCustGroup == "Senior Citizen") || (this->extraguests.at(i)->currentCustGroup == "Child")) && (this->extraguests.at(i)->nationality == "Local Citizen"))
-			this->pricing += 31.0f;
-		else if ((this->extraguests.at(i)->currentCustGroup == "Senior Citizen") && (this->extraguests.at(i)->nationality == "Foreigner"))
-			this->pricing += 50.0f;
-		else if ((this->extraguests.at(i)->currentCustGroup == "Adult") && (this->extraguests.at(i)->nationality == "Foreigner"))
-			this->pricing += 81.0f;
-		else if ((this->extraguests.at(i)->currentCustGroup == "Child") && (this->extraguests.at(i)->nationality == "Foreigner"))
-			this->pricing += 59.0f;
-		
-	}
-	system("cls");
-	std::cout << "Total Price : RM " << this->pricing << std::endl;
-	system("pause");
 }
-*/

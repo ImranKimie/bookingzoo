@@ -85,7 +85,7 @@ void OptionScreen()
 		switch (option)
 		{
 			case 1:	customer.Reserve(); break;
-			case 2:	//customer.DisplayReceipt(); break;
+			case 2:	customer.DisplayReceipt(); break;
 			case 3:	exit(0); break;
 			default: 
 				system("cls");
