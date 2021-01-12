@@ -14,33 +14,43 @@ Customer::~Customer()
 void Customer::Reserve()
 {
 	system("cls");
+	std::ifstream PricingFile;
+	std::string line;
 	char hasAddGuests; // Has additional guests?
+	int ticketType;
+	PricingFile.open(PRICING_FILEPATH);
+	if (PricingFile.fail())
+	{
+		std::cout << "\npricing.txt not found,exiting program\n";
+		system("pause");
+		exit(-1);
+	}
+	else
+	{
+		while (std::getline(PricingFile, line))
+			std::cout << line << '\n';
+	}
+
+	askagain:
+	std::cout << "Enter the ticket type that you want(1-6) : "; std::cin >> ticketType;
+	switch (ticketType)
+	{
+	case 1:this->customerType = "Adult"; this->pricing += 38; break;
+	case 2:this->customerType = "Senior Citizen"; this->pricing += 31; break;
+	case 3:this->customerType = "Children"; this->pricing += 29; break;
+	case 4:this->customerType = "Senior Citizen"; this->nationality = "Foreigner"; this->pricing += 50; break;
+	case 5:this->customerType = "Adult"; this->nationality = "Foreigner"; this->pricing += 81; break;
+	case 6:this->customerType = "Children"; this->nationality = "Foreigner"; this->pricing += 59; break;
+	default:goto askagain; break;
+	}
 	std::cin.ignore();
 	std::cout << "Enter your name : "; std::getline(std::cin, this->name);
-	std::cout << "Enter your age : "; std::cin >> this->age;
-	std::cout << "Are you a foreigner(1) or a local citizen(2) ? (1/2): "; std::cin >> this->inationality;
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
 	std::cout << "Enter the month : "; std::cin >> this->dateofbooking[1];
 	std::cout << "Enter the year : "; std::cin >> this->dateofbooking[2];
 	
-	if (this->age >= 18 && this->age < 60)
-		this->currentCustGroup = "Adult";
-	else if(this->age >= 60)
-		this->currentCustGroup = "Senior Citizen";
-	else
-		this->currentCustGroup = "Child";
-
-	switch (this->inationality)
-	{
-		case 1:this->nationality = "Foreigner"; break;
-		case 2:this->nationality = "Local Citizen"; break;
-		default:this->nationality = "Local Citizen"; break;
-	}
-
-	
-
-
+	/*
 	std::cout << "Is there any additional guests ? (y/n) : "; std::cin >> hasAddGuests;
 	switch (hasAddGuests)
 	{
@@ -50,10 +60,10 @@ void Customer::Reserve()
 		case 'n':break;
 		default: Reserve(); break;
 	}
-
+	*/
 	
 }
-
+/*
 void Customer::ReserveExtra()
 {
 	static int count = 1;
@@ -80,8 +90,8 @@ void Customer::ReserveExtra()
 	}
 	count++;
 }
-
-void Customer::DisplayReservation()
+*//*
+void Customer::DisplayReceipt()
 {
 	system("cls");
 	std::cout << "Your name : " << this->name << std::endl;
@@ -102,8 +112,8 @@ void Customer::DisplayReservation()
 		}
 	}
 	system("pause");
-}
-
+}*/
+/*
 void Customer::ExtraGuests()
 {
 	int numberofguests;
@@ -115,8 +125,8 @@ void Customer::ExtraGuests()
 		this->extraguests.push_back(custarr);
 	}
 
-}
-
+}*/
+/*
 void Customer::CalculatePricing()
 {
 	if ((this->currentCustGroup == "Adult") && (this->nationality == "Local Citizen"))
@@ -148,3 +158,4 @@ void Customer::CalculatePricing()
 	std::cout << "Total Price : RM " << this->pricing << std::endl;
 	system("pause");
 }
+*/

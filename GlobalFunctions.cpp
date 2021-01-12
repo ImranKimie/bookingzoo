@@ -85,9 +85,8 @@ void OptionScreen()
 		switch (option)
 		{
 			case 1:	customer.Reserve(); break;
-			case 2:	customer.DisplayReservation(); break;
-			case 3:	customer.CalculatePricing(); break;
-			case 4:	exit(0); break;
+			case 2:	//customer.DisplayReceipt(); break;
+			case 3:	exit(0); break;
 			default: 
 				system("cls");
 				goto loop;

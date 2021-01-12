@@ -7,6 +7,8 @@
 #include <vector> 
 #include <conio.h>
 #include <sstream>
+#include <time.h>
 
 #define WELCOME_FILEPATH "welcome.txt"
 #define OPTIONS_FILEPATH "optionmessage.txt"
+#define PRICING_FILEPATH "pricing.txt"

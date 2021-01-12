@@ -2,6 +2,5 @@ OPTION SCREEN
 =============
 
 1)Book a reservation
-2)Display your current reservation
-3)Calculate Pricing
-4)Exit the program
+2)Display Receipt
+3)Exit the program
