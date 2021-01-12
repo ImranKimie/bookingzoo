@@ -18,6 +18,8 @@ void Customer::Reserve()
 	int numOfTickets;
 	int ticketType;
 	char moretickettype;
+	char editnewdate;
+	static int counting = 0;
 	start:
 	system("cls");
 	PricingFile.open(PRICING_FILEPATH);
@@ -59,11 +61,19 @@ void Customer::Reserve()
 	std::cout << "Do you want to add another ticket type?(y/n)"; std::cin >> moretickettype;
 	if (moretickettype == 'y')
 		goto start;
+	if (moretickettype = 'n' && counting > 0)
+	{
+		std::cout << " Do you want to input new date or not? (y/n) : ";
+		std::cin >> editnewdate;
+
+		if (editnewdate == 'n')
+			goto start;
+	}
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
 	std::cout << "Enter the month : "; std::cin >> this->dateofbooking[1];
 	std::cout << "Enter the year : "; std::cin >> this->dateofbooking[2];
-	
+	counting++;
 }
 
 void Customer::TicketInput()
