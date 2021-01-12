@@ -36,7 +36,7 @@ void Customer::Reserve()
 	askagain:
 	std::cout << "Enter the ticket type that you want(1-6) : "; std::cin >> ticketType;
 	std::cout << "Enter the number of tickets you want : "; std::cin >> numOfTickets;
-
+	std::cin.ignore();
 	for (int i = 0; i < numOfTickets; i++)
 	{
 		Customer* ticketcust = new Customer;
@@ -73,9 +73,8 @@ void Customer::TicketInput()
 	system("cls");
 	std::cout << "Enter info for ticket " << count << " : \n";
 	std::cout << "Enter name : "; 
-	if (count == 1)
-		std::cin.ignore();
-	std::getline(std::cin, this->name);
+ 	std::getline(std::cin, this->name);
+	
 	count++;
 }
 
