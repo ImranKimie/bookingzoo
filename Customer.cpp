@@ -12,7 +12,6 @@ Customer::~Customer()
 
 void Customer::Reserve()
 {
-	
 	std::ifstream PricingFile;
 	std::string line;
 	int numOfTickets;
@@ -42,7 +41,6 @@ void Customer::Reserve()
 	for (int i = 0; i < numOfTickets; i++)
 	{
 		Customer* ticketcust = new Customer;
-		
 		ticketcust->TicketInput();
 		switch (ticketType)
 		{
@@ -88,21 +86,108 @@ void Customer::TicketInput()
 	count++;
 }
 
+void Customer::VariableCounter(std::vector<std::array<std::string, 2>> *array) 
+{
+	std::vector<std::string>tempstrarr;
+	
+	if (!this->guestslist.empty())
+	{
+		for (size_t i = 0; i < this->guestslist.size(); ++i)
+		{
+			tempstrarr.push_back(this->guestslist.at(i)->nationality + " " + this->guestslist.at(i)->customerType);
+		}
+	}
+
+	int numOfType[100]= {}; 
+	std::string strOfType[100] = {};
+	int count = 0;
+	if (!tempstrarr.empty())
+	{
+		for (size_t i = 0; i < tempstrarr.size(); i++)
+		{
+			count = 0;
+			for (size_t j = 0; j < tempstrarr.size(); j++)
+			{
+				if (tempstrarr.at(i) == tempstrarr.at(j))
+				{
+					count++;
+				}
+			}
+			numOfType[i] = count;
+			strOfType[i] = tempstrarr.at(i);
+		}
+	}
+
+	for (int i = 0; i < 100; i++)
+	{
+		for (int k = i + 1; k < 100; k++)
+		{
+			if (strOfType[i] != "") 
+			{
+				if (strOfType[i] == strOfType[k])
+				{
+					numOfType[k] = 0;
+					strOfType[k] = "";
+				}
+			}
+			}
+			
+	}
+	for (int i = 0; i < 100; i++)
+	{
+		if (numOfType[i] != 0 && strOfType[i] != "")
+		{
+			std::array <std::string,2> str = { std::to_string(numOfType[i]), strOfType[i] };
+			array->push_back(str);
+		}
+	}
+}
+
 void Customer::DisplayReceipt()
 {
+	std::vector<std::array<std::string, 2>>array;
+	VariableCounter(&array);
+
 	system("cls");
-	std::cout << "Your booking date : \n";
+	std::cout << "\nYour booking date : \n";
 	std::cout << "Day : " << this->dateofbooking[0] << "\n"<< "Month : " << this->dateofbooking[1] << "\n" << "Year : " << this->dateofbooking[2] << std::endl;
 	if (!this->guestslist.empty())
 	{
 		std::cout << "\nTicket Infos:\n\n";
-		for (size_t i = 0; i < this->guestslist.size(); ++i)
+		for (size_t k = 0; k < array.size(); k++)
 		{
-			std::cout << std::endl;
-			std::cout << "Name of guest " << i + 1 << " : " << this->guestslist.at(i)->name << std::endl;
-			std::cout << "Ticket Type : " << this->guestslist.at(i)->nationality << " " << this->guestslist.at(i)->customerType << std::endl;
-			std::cout << std::endl;
+			std::cout << array.at(k)[1] << " - " << array.at(k)[0] << std::endl;
+			for (size_t i = 0; i < this->guestslist.size(); ++i)
+			{
+				if (this->guestslist.at(i)->nationality + " " + this->guestslist.at(i)->customerType == array.at(k)[1])
+				{
+					std::cout <<this->guestslist.at(i)->name << std::endl;
+				}
+				/*std::cout << std::endl;
+				std::cout << "Name of guest " << i + 1 << " : " << this->guestslist.at(i)->name << std::endl;
+				std::cout << "Ticket Type : " << this->guestslist.at(i)->nationality << " " << this->guestslist.at(i)->customerType << std::endl;
+				std::cout << std::endl;*/
+			}
 		}
+		
 	}
 	system("pause");
+}
+
+void Customer::insertionSort(std::string name[], int n)
+{
+	int i, key, j;
+	std::string key2;
+	for (i = 1; i < n; i++)
+	{
+		key = (int)name[i].front();
+		key2 = name[i];
+		j = i - 1;
+		while (j >= 0 && key < (int)name[j].front())
+		{
+			name[j + 1] = name[j];
+			j = j - 1;
+		}
+		name[j + 1] = key2;
+	}
 }

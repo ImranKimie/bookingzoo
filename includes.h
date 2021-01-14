@@ -8,6 +8,8 @@
 #include <conio.h>
 #include <sstream>
 #include <time.h>
+#include <algorithm>
+#include <array>
 
 #define WELCOME_FILEPATH "welcome.txt"
 #define OPTIONS_FILEPATH "optionmessage.txt"
