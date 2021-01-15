@@ -1,5 +1,6 @@
 #include "Customer.h"
 #include "includes.h"
+#include "GlobalFunctions.h"
 Customer::Customer()
 {
 
@@ -65,7 +66,7 @@ void Customer::Reserve()
 		std::cin >> editnewdate;
 
 		if (editnewdate == 'n')
-			goto start;
+			OptionScreen();
 	}
 	std::cout << "Enter the date you want to book (in numbers) : \n";
 	std::cout << "Enter the day : "; std::cin >> this->dateofbooking[0];
